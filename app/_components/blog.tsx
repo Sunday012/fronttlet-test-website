@@ -44,16 +44,15 @@ export const Blog = () => {
           {BlogItems.map((item, index) => (
             <div
               key={index}
-              className="cursor-pointer relative group"
-              style={{
-                backgroundImage: `url(${item.srclink})`,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                width: "378px",
-                height: "235px",
-              }}
+              className="cursor-pointer relative group md:w-[378px] h-[235px] w-[98%]"
             >
+              <Image
+              src={item.srclink}
+              alt="blog"
+              width={378}
+              height={235}
+              className="w-full h-full"
+              />
                 <div className="absolute group-hover:inset-0 group-hover:bg-black/30" />
             </div>
           ))}

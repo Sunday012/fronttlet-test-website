@@ -57,14 +57,14 @@ export default function Footer() {
 
               <form
                 action=""
-                className=" rounded-[25px] border border-[#676767] w-fit mt-14"
+                className=" rounded-[25px] border flex border-[#676767] md:w-fit w-[98%] mt-14"
               >
                 <input
                   type="text"
-                  className="bg-transparent px-2 placeholder:text-[#BABABA] outline-none border-none"
+                  className="bg-transparent md:px-2 px-0 placeholder:text-[#BABABA] outline-none border-none"
                   placeholder="Enter your email address"
                 />
-                <button className=" rounded-[24px] bg-white text-black w-[150px] h-[49px] font-bold ">
+                <button className=" rounded-[24px] bg-white text-black p-4 md:w-[150px] md:h-[49px] font-bold ">
                   Suscribe
                 </button>
               </form>

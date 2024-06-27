@@ -31,7 +31,7 @@ export default function Button({
       outline: `hover:bg-opacity-10 hover:bg-white`,
     },
     grey: {
-      flat: `bg-[#303030] border-[#72879F] text-[#72879F] text-white rounded-[24px] text-nowrap py-[15px] px-[24px] outline-none border-none font-semibold`,
+      flat: `bg-[#303030] z-[9999] border-[#72879F] text-[#72879F] text-white rounded-[24px] text-nowrap py-[15px] px-[24px] outline-none border-none font-semibold`,
       outline: `hover:bg-opacity-10 hover:bg-[#72879F] text-[#72879F] border-[#72879F]`,
     },
   };
