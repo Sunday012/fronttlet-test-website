@@ -86,7 +86,7 @@ export default function Footer() {
                       <Link
                   href="/"
                   key={id}
-                  className=" text-[#C9C9C9] text-nowrap"
+                  className=" text-[#C9C9C9] "
                   >
                     {link.title}
                   </Link>
