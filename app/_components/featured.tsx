@@ -1,21 +1,39 @@
+"use client"
 import Image from "next/image"
 import Button from "./button"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+import {motion} from "framer-motion"
+
 type FeaturedCardProps = {
     src: string;
     resource: string;
     reporter: string;
 }
 export const Featured = () => {
+    const animateVar = {
+        initial: {
+          y: 100,
+          opacity: 0,
+        },
+        animate: {
+          y: 0,
+          opacity: 1,
+          transition: {
+            duration: 1,
+            ease: "easeInOut",
+            delay: 1,
+          },
+        },
+      };
     return(
-        <div>
-            <div className="w-full lg:mt-24 mt-10 mb-10 flex items-center justify-center">
+        <motion.div className="xl:flex flex-col hidden"
+        variants={animateVar}
+        initial="initial"
+        whileInView="animate"
+        viewport={{once : true}}>
+        <div 
+        className="w-full lg:mt-24 mt-10 mb-10 flex items-center justify-center"
+       
+        >
           <p className="text-[24px] font-semibold">As Featured In</p>
             </div>
             <div className="flex overflow-x-scroll gap-[32px] no-scrollbar">
@@ -35,13 +53,13 @@ export const Featured = () => {
                Apply to SIP 1.0
               </Button>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
 const FeaturedCard = ({src, resource, reporter} : FeaturedCardProps) => {
     return(
-        <div className="xl:flex hidden ">
+        <div className="flex">
             <div className="w-[622px] h-[393px]">
             <Image 
             src={src}

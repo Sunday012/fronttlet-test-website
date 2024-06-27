@@ -1,11 +1,33 @@
+"use client"
 import React from "react";
 import { Header } from "./header";
 import {Investors} from "../_constants"
 import Button from "./button"
+import {motion} from "framer-motion"
 
 export const Investor = () => {
+  const animateVar = {
+    initial: {
+      y: 100,
+      opacity: 0,
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+        delay: 1,
+      },
+    },
+  };
   return (
-    <div>
+    <motion.div
+    variants={animateVar}
+            initial="initial"
+            whileInView="animate"
+            viewport={{once : true}}
+    >
       <Header
         text="SINC Investors Network"
         subtext="Our deals are structured not just to take in investments but to onboard owners passionate about our solutions. Our portfolio companies are valued at $50k at start, with these low valuation, you are guaranteed at least 2x-5x, usually been the first to invest."
@@ -53,6 +75,6 @@ export const Investor = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };

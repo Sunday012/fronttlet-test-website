@@ -1,11 +1,33 @@
+"use client"
 import Image from "next/image";
 import React from "react";
 import Button from "./button";
+import { motion } from "framer-motion";
 
 export const Hero = () => {
+  const animateVar = {
+    initial: {
+      y: 100,
+      opacity: 0,
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+        delay: 1,
+      },
+    },
+  };
   return (
     <div>
-      <div className=" grid lg:grid-cols-2 grid-cols-1 bg-[#FFFFFF] relative">
+      <motion.div className=" grid lg:grid-cols-2 grid-cols-1 bg-[#FFFFFF] relative"
+      variants={animateVar}
+      initial="initial"
+      whileInView="animate"
+      viewport={{once : true}}
+      >
         <div className="flex items-start justify-start flex-col lg:px-24 px-10 gap-2">
           <div className="flex lg:items-center lg:justify-center items-start justify-start flex-col gap-2 lg:mt-14 mt-8 mb-4">
             <h1 className="lg:text-[32px] md:text-[24px] text-[20px] font-medium leading-[32px] lg:leading-[51px]">
@@ -32,7 +54,7 @@ export const Hero = () => {
             <button className="w-[12px] h-[12px] rounded-full bg-[#D9D9D9]"></button>
             <button className="w-[12px] h-[12px] rounded-full bg-[#D9D9D9]"></button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

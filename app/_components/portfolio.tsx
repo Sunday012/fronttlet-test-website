@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import { Header } from "./header";
 
@@ -7,6 +8,21 @@ const imageFileNames = Array.from(
 );
 
 export default function Portfolio() {
+  const animateVar = {
+    initial: {
+      y: 100,
+      opacity: 0,
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+        delay: 1,
+      },
+    },
+  };
   return (
     <div className="flex flex-col items-center justify-center">
       <Header text="Our Studio Portfolio" subtext="Our 2024 Service Incubator Portfolio Companies" />

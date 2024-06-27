@@ -10,7 +10,7 @@ import { Featured } from "./_components/featured";
 import {HowItWorks} from "./_components/how-it-works"
 import Portfolio from "./_components/portfolio";
 import CoFounder from "./_components/coFounder";
-import EquityJob from "./_components/equityJob";
+import {EquityJob} from "./_components/equityJob";
 
 export default function Home() {
   return (

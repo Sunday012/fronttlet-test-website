@@ -2,11 +2,32 @@
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { ArrowButton } from "./arrow";
 import Button from "./button";
+import { motion } from "framer-motion";
 export const Network = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const animateVar = {
+    initial: {
+      y: 100,
+      opacity: 0,
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+        delay: 1,
+      },
+    },
+  };
   return (
     <div className=" lg:py-24 py-10">
-      <div className="flex flex-col items-center justify-center">
+      <motion.div className="flex flex-col items-center justify-center"
+      variants={animateVar}
+      initial="initial"
+      whileInView="animate"
+      viewport={{once : true}}
+      >
         <div className="md:px-24 px-2 h-[235px] ">
           <div className="rounded-[32px] h-full bg-white px-[32px] py-[20px] flex flex-col gap-4 items-center justify-center">
             <p className="text-center">
@@ -47,14 +68,14 @@ export const Network = () => {
             <Button color="grey">Read About Us</Button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
 
 const NetworkCard = () => {
   return (
-    <div className="bg-white rounded-[12px] p-[24px] w-[528px] h-[370px]">
+    <div className="bg-white rounded-[12px] p-[24px] xl:w-[528px] md:w-[450px] h-[370px]">
       <div className="flex flex-col gap-[20px]">
         <h1 className="text-[24px] font-semibold">
           Work with Service Incubators to expedite your time-to-market

@@ -1,7 +1,45 @@
+"use client"
 import React from "react";
 import Image from "next/image";
 import { Header } from "./header";
-const EquityJob = () => {
+import { ArrowButton } from "./arrow";
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
+
+type EquityProps = {
+  image: string;
+  paragraph: string;
+  title: string;
+  location: string;
+  industry: string;
+  equity: string;
+  stipend: string;
+  deadLine: string;
+  roleType: string;
+}
+export const EquityJob = () => {
+  const animateVar = {
+    initial: {
+      y: 100,
+      opacity: 0,
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+        delay: 1,
+      },
+    },
+  };
   const jobdata = [
     {
       image: "/logo-21.svg",
@@ -55,53 +93,77 @@ const EquityJob = () => {
   return (
     <div className="flex flex-col items-center justify-center">
      <Header text="Equity jobs" subtext="See companies and startups offering equity or a mix of cash and equity for very important position in their company" />
-      <div className="flex w-[98%] overflow-x-scroll lg:overflow-hidden lg:px-24 px-4 no-scrollbar gap-3.5 ">
-        {jobdata.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col gap-2.5 rounded-lg bg-white p-3.5 w-[278px]"
+      <Carousel
+        className="lg:px-24 px-4 w-full"
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+      >
+        <CarouselContent>
+          {jobdata.map((job, index) => (
+          <CarouselItem key={index} className="lg:basis-1/3 md:basis-1/2">
+          <EquityJobCard  {...job} />
+          </CarouselItem>
+        ))}
+        </CarouselContent>
+      </Carousel>
+      <div className='flex items-center justify-center mt-10'>
+          <ArrowButton text='See More Equity Jobs' />
+          </div>
+    </div>
+  );
+};
+
+
+
+
+const EquityJobCard = ({image, paragraph, title, location, industry, equity, stipend, deadLine, roleType} : EquityProps) => {
+  return(
+        <div
+            className="flex flex-col gap-2.5 rounded-lg bg-white p-3.5"
           >
-            <div className="h-[50px] items-center flex justify-start ">
+            <div className="h-[50px] items-center flex justify-start w-[40px]">
               <Image
-                src={item.image}
+                src={image}
                 alt="company logo"
                 width={120}
                 height={0}
               />
             </div>
-            <span className="text-[13px]">{item.paragraph}</span>
-            <span className="font-medium">{item.title}</span>
+            <span className="text-[13px]">{paragraph}</span>
+            <span className="font-medium">{title}</span>
 
             <div className="flex items-start justify-between">
               <div className="flex flex-col items-start w-[50%]">
                 <span className="text-[#8E8E8E] font-light">LOCATION</span>
-                <span className="text-[13px]">{item.location}</span>
+                <span className="text-[13px]">{location}</span>
               </div>
               <div className="flex flex-col items-end w-[50%]">
                 <span className="text-[#8E8E8E] font-light">INDUSTRY</span>
-                <span className="text-[13px]">{item.industry}</span>
+                <span className="text-[13px]">{industry}</span>
               </div>
             </div>
 
             <div className="flex items-start justify-between">
               <div className="flex flex-col items-start w-[50%]">
                 <span className="text-[#8E8E8E] font-light">EQUITY</span>
-                <span className="text-[13px]">{item.equity}%</span>
+                <span className="text-[13px]">{equity}%</span>
               </div>
               <div className="flex flex-col items-end w-[50%]">
                 <span className="text-[#8E8E8E] font-light">STIPEND</span>
-                <span className="text-[12px]">NGN {item.stipend}/mth</span>
+                <span className="text-[12px]">NGN {stipend}/mth</span>
               </div>
             </div>
 
             <div className="flex items-start justify-between">
               <div className="flex flex-col items-start w-[50%]">
                 <span className="text-[#8E8E8E] font-light">DEADLINE</span>
-                <span className="text-[12px]">{item.deadLine}</span>
+                <span className="text-[12px]">{deadLine}</span>
               </div>
               <div className="flex flex-col items-end w-[50%]">
                 <span className="text-[#8E8E8E] font-light">ROLE TYPE</span>
-                <span className="text-[13px]">{item.roleType}</span>
+                <span className="text-[13px]">{roleType}</span>
               </div>
             </div>
 
@@ -109,10 +171,5 @@ const EquityJob = () => {
               View Details
             </button>
           </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default EquityJob;
+  )
+}

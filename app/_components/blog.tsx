@@ -1,5 +1,8 @@
+"use client"
 import Image from "next/image";
 import { Header } from "./header";
+import { ArrowButton } from "./arrow";
+import { motion } from "framer-motion";
 
 const BlogItems = [
   { srclink: "/blogimg.png" },
@@ -14,11 +17,30 @@ const ResourceItems = [
 ];
 
 export const Blog = () => {
+  const animateVar = {
+    initial: {
+      y: 100,
+      opacity: 0,
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+        delay: 1,
+      },
+    },
+  };
   return (
-    <div>
+    <motion.div
+    variants={animateVar}
+    initial="initial"
+    whileInView="animate"
+    viewport={{once : true}}>
       <Header text="Blogs & Resources" />
       <div className="flex flex-col gap-3.5 items-center justify-center">
-        <div className="flex lg:flex-row flex-col gap-[32px]">
+        <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[32px]">
           {BlogItems.map((item, index) => (
             <div
               key={index}
@@ -59,7 +81,11 @@ export const Blog = () => {
             </div>
           ))}
         </div>
+
+        <div className='flex items-center justify-center mt-10 pb-24'>
+          <ArrowButton text='See More Blogs & Resources' />
+          </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

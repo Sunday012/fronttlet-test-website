@@ -1,7 +1,24 @@
+"use client"
 import React from "react";
 import { Header } from "./header";
-
+import { ArrowButton } from "./arrow";
+import {motion} from "framer-motion"
 const CoFounder = () => {
+  const animateVar = {
+    initial: {
+      y: 100,
+      opacity: 0,
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+        delay: 1,
+      },
+    },
+  };
   const cofounders = [
     {
       id: 1,
@@ -27,13 +44,18 @@ const CoFounder = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <motion.div className="flex flex-col items-center justify-center"
+    variants={animateVar}
+            initial="initial"
+            whileInView="animate"
+            viewport={{once : true}}
+    >
       <Header text='Co-found With Us' subtext='We seek to collaborate with visionary individuals who are solving similar problems of helping entrepreneurs succeed' />
-      <div className="flex flex-wrap gap-3.5 items-center justify-center">
+      <div className="flex flex-col lg:flex-row items-center justify-between lg:px-24 px-4 gap-6">
         {cofounders.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col gap-2.5 rounded-lg bg-white p-2.5 md:w-[30%] min-h-[230px]"
+            className="flex flex-col gap-2.5 rounded-lg bg-white p-2.5  min-h-[230px]"
           >
             <div
               className="flex items-center text-white justify-center rounded-full w-[40px] h-[40px]"
@@ -46,7 +68,10 @@ const CoFounder = () => {
           </div>
         ))}
       </div>
-    </div>
+      <div className='flex items-center justify-center mt-10'>
+          <ArrowButton text='Build your dream' />
+          </div>
+    </motion.div>
   );
 };
 

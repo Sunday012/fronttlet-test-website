@@ -1,13 +1,34 @@
-
+"use client"
+import { motion } from "framer-motion";
 type CardProps = {
     number: string;
     text: string;
     color: string;
 }
 export const Focus = () => {
+    const animateVar = {
+        initial: {
+          y: 100,
+          opacity: 0,
+        },
+        animate: {
+          y: 0,
+          opacity: 1,
+          transition: {
+            duration: 1,
+            ease: "easeInOut",
+            delay: 1,
+          },
+        },
+      };
     return(
         <div>
-            <div className="flex flex-col items-center justify-center">
+            <motion.div className="flex flex-col items-center justify-center"
+            variants={animateVar}
+            initial="initial"
+            whileInView="animate"
+            viewport={{once : true}}
+            >
             <h1 className="lg:text-[56px] text-[20px] leading-[72px] font-semibold text-center mb-6">
             Our Area of Focus
             </h1>
@@ -19,7 +40,7 @@ export const Focus = () => {
                 <FocusCard number={"04"} text="Aggregation & Shared Economy" color="#20888F" />
                 <FocusCard number={"05"} text="Decentralized Economy & Digital Assets" color="#FF88C6" />
             </div>
-            </div>
+            </motion.div>
         </div>
     )
 }

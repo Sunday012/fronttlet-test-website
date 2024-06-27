@@ -1,8 +1,10 @@
+"use client"
 import React from 'react'
 import { Header } from './header'
 import Image from 'next/image';
 import Button from './button';
 import { ArrowButton } from './arrow';
+import { motion } from "framer-motion";
 
 type ModelProps = {
   shape: string;
@@ -10,8 +12,28 @@ type ModelProps = {
 }
 
 export const IncubationModel = () => {
+  const animateVar = {
+    initial: {
+      y: 100,
+      opacity: 0,
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+        delay: 1,
+      },
+    },
+  };
   return (
-    <div>
+    <motion.div
+    variants={animateVar}
+            initial="initial"
+            whileInView="animate"
+            viewport={{once : true}}
+    >
         <Header text='Our Service Incubation Model' subtext='The Service Incubation model is an alternate funding model for startup that allows professionals to offer their services to startups in return for a minute equity (usually between 0.5% to 1.5%) in the startup. As a service incubator, you will see your share grow as much as 1000% in 12 – 24 months as been first to invest.' />
         <div className='lg:px-24 px-4'>
           <h1 className='font-medium text-[32px]'>Hypothesis</h1>
@@ -32,7 +54,7 @@ export const IncubationModel = () => {
           <ArrowButton text='Become A Service Incubator' />
           </div>
         </div>
-    </div>
+    </motion.div>
   )
 }
 
